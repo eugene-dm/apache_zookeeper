@@ -105,7 +105,7 @@ module ZookeeperHelper
     identities << node["machinename"] if node.attribute?("machinename")
     identities << node["ec2"]["public_hostname"] if node.attribute?("ec2") && node["ec2"].attribute?("public_hostname")
     identities << node["ec2"]["public_ipv4"] if node.attribute?("ec2") && node["ec2"].attribute?("public_ipv4")
-
+    identities << node['zookeeper']['server'] if node['zookeeper']['server']
     identities.each do |id|
       # We also check if instead the value is of the form [HOST]:[PORT]:[PORT] which is also
       # valid in the case of defining quorum and leader election ports
